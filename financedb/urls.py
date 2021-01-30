@@ -22,5 +22,9 @@ from core import views as v
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('time/', v.current_datetime),    
-    path('', v.home),
+    path('assets/', v.show_assets, name='url_list_assets'),
+    path('update_asset/<int:pk>/', v.update_asset, name='url_update_asset'),
+    path('delete_asset/<int:pk>/', v.delete_asset, name='url_delete_asset'),
+    path('new_asset/', v.new_asset, name='url_new_asset'),
+    path('', v.home, name='home'),
 ]
