@@ -12,8 +12,10 @@ Aplicação para controle de finanças
 ```
     python -m venv .venv
 ```
-* Ative o virtualenv:
-
+* Ative o virtualenv (windowns):
+```
+    .\.venv\Scripts\activate
+```
 * Instale as dependencias: \n
 ```
     pip install -r requirements.txt \n
