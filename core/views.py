@@ -1,5 +1,6 @@
+from django.http.response import JsonResponse
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 import datetime
 from .form import AssetForm
 from .models import Asset
@@ -10,25 +11,21 @@ def current_datetime(request):
     html = "<html><body>It is now %s.</body></html>" % now
     return HttpResponse(html)
 
-def show_assets(request):
-    data = {}    
-    data['transactions'] = Transaction.objects.all()
-    data['assets'] = Asset.objects.all()
-    return render(request, 'core/assets.html',data)
+def show_assets(request): 
+    # data['transactions'] = Transaction.objects.all()
+    assets = Asset.objects.all()
+    return render(request, 'core/assets.html',{'assets':assets})
 
 def new_asset(request):
-    data = {}    
     form = AssetForm(request.POST or None)
     if form.is_valid():
         form.save()
         return redirect('url_list_assets')
     else:
         print("Deu errado")
-    data['form'] = form
-    return render(request, 'core/new_asset.html',data)
+    return render(request, 'core/new_asset.html',{'form':form })
 
 def update_asset(request,pk):
-    data = {}  
     try:
         asset = Asset.objects.get(pk=pk)
     except Asset.DoesNotExist:
@@ -40,9 +37,7 @@ def update_asset(request,pk):
         return redirect('url_list_assets')
     else:
         print("Deu errado")
-    data['form'] = form
-    data['asset'] = asset
-    return render(request, 'core/new_asset.html',data)
+    return render(request, 'core/new_asset.html',{'form': form, 'asset': asset})
 
 def delete_asset(request,pk):
     try:
@@ -53,6 +48,9 @@ def delete_asset(request,pk):
     return redirect('url_list_assets')
 
 def home(request):
-    data = {}
-    data['now'] = datetime.datetime.now()
-    return render(request, 'core/home.html',data)
+    return render(request, 'core/home.html',{'now': datetime.datetime.now()})
+
+def assets_json(request):
+    assets = Asset.objects.all()
+    data = [asset.to_dict_json() for asset in assets]
+    return JsonResponse({'data':data})

@@ -5,7 +5,7 @@ class Asset(models.Model):
     """A model of a asset."""
     sigla = models.CharField(max_length=45)
     symbol = models.CharField(max_length=45,null=True, blank=True)
-    nome = models.CharField(max_length=200,null=True, blank=True)
+    name = models.CharField(max_length=200,null=True, blank=True)
     isin = models.CharField(max_length=45,null=True, blank=True)
     classe = models.CharField(max_length=45,null=True, blank=True)
     market_cod = models.CharField(max_length=45,null=True, blank=True)
@@ -37,6 +37,17 @@ class Asset(models.Model):
         # count members by band
         # conta os membros por banda
         return self.asset.count()
+    
+    def to_dict_json(self):
+        data = {
+            'id':self.id,
+            'sigla': self.sigla,
+            'name': self.name,
+            'price': self.price,
+            'setor': self.setor,
+        }
+        return data
+
 
 
 class Transaction(models.Model):

@@ -1,35 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="https://www.djangoproject.com/favicon.ico">
-  <title>FinanceDB</title>
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <!-- Font-awesome -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+{% extends "core/base.html"%}
 
-  <style>
-    body {
-      margin-top: 60px;
-    }
-  </style>
-
-  {% block css %}{% endblock css %}
-
-  </body>
-</head>
-<body>
-  {% include "core/nav.html" %}
-  <h1>Adicionar novo ativo</h1>
+{% block content %}
+  <h1>Novo ativo</h1>
   <form method="post" >
     {% csrf_token %}
     {{form.as_p}}
-    <button type="submit">Salvar</button>
+    <button class="btn btn-primary" type="submit">Salvar</button>
     {% if asset %}
       <a href="{% url 'url_delete_asset' asset.id %}">Remover</a>
     {% endif %}
   </form>
-</body>
-</html>
+{% endblock content %}
+

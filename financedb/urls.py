@@ -26,5 +26,6 @@ urlpatterns = [
     path('update_asset/<int:pk>/', v.update_asset, name='url_update_asset'),
     path('delete_asset/<int:pk>/', v.delete_asset, name='url_delete_asset'),
     path('new_asset/', v.new_asset, name='url_new_asset'),
+    path('assets_json/', v.assets_json, name='url_assets_json'),
     path('', v.home, name='home'),
 ]
