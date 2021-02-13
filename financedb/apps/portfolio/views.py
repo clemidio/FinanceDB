@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from transaction.models import Transaction
-from asset.models import Asset
-from django.db.models import Count, Sum, Avg
+from financedb.apps.transaction.models import Transaction
+from financedb.apps.asset.models import Asset
+from django.db.models import Sum, Avg
 
 # Create your views here.
 
@@ -27,4 +27,5 @@ def list_portfolio(request):
             )
             objects.append(data)
 
-    return render(request, 'list_portfolio.html', {'objects': objects, 'asset': asset})
+    return render(request, 'list_portfolio.html',
+                  {'objects': objects, 'asset': asset})

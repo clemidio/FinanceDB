@@ -1,8 +1,8 @@
 from django.db import models
 from django.urls import reverse_lazy
-from asset.models import Asset
-from nota.models import Nota
-from core.models import TimeStampedModel
+from financedb.apps.asset.models import Asset
+from financedb.apps.nota.models import Nota
+from financedb.apps.core.models import TimeStampedModel
 
 OPERATION_TYPE = (
     ('C', 'Compra'),
@@ -52,7 +52,7 @@ class Transaction(TimeStampedModel):
 
     def get_absolute_url(self):
         # retorna a url no formato /bands/1/
-        return reverse_lazy('url_detail_transaction', kwargs={'pk': self.pk})
+        return reverse_lazy('transaction:url_detail_transaction', kwargs={'pk': self.pk})
 
     def __str__(self):
         return str(self.pk)

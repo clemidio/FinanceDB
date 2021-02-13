@@ -47,11 +47,11 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_extensions',
     # minhas apps
-    'core',
-    'asset',
-    'transaction',
-    'portfolio',
-    'nota',
+    'financedb.apps.core',
+    'financedb.apps.asset',
+    'financedb.apps.transaction',
+    'financedb.apps.portfolio',
+    'financedb.apps.nota',
 ]
 INTERNAL_IPS = [
     '127.0.0.1',
@@ -149,12 +149,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-    # os.path.join(APP_ROOT, 'static'),
+    os.path.join(BASE_DIR, 'financedb/static')
+    # os.path.join(APP_ROOT, 'financedb/static'),
 ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'financedb/media')
 MEDIA_URL = '/media/'
 
-# MEDIA_ROOT = os.path.join(APP_ROOT, 'media/')
+# MEDIA_ROOT = os.path.join(APP_ROOT, 'financedb/media/')
 # MEDIA_URL = 'media/'

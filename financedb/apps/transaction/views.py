@@ -26,7 +26,7 @@ def detail_transaction(request, pk):
     try:
         transaction = Transaction.objects.get(pk=pk)
     except Transaction.DoesNotExist:
-        raise Http404('asset does not exist')
+        raise Http404('transaction does not exist')
     return render(request, 'detail_transaction.html', {'object': transaction})
 
 

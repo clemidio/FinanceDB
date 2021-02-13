@@ -35,7 +35,7 @@ class Asset(models.Model):
 
     def get_absolute_url(self):
         # retorna a url no formato /bands/1/
-        return reverse_lazy('url_asset_detail', kwargs={'pk': self.sigla})
+        return reverse_lazy('asset:url_asset_detail', kwargs={'pk': self.sigla})
 
     def get_members_count(self):
         # count members by band
@@ -44,7 +44,6 @@ class Asset(models.Model):
 
     def to_dict_json(self):
         data = {
-            'id': self.id,
             'sigla': self.sigla,
             'name': self.name,
             'price': self.price,

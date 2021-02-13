@@ -2,11 +2,11 @@
 
 {% block content %}
 
-<a href="{% url 'url_list_assets' %}">Voltar</a>
+<a href="{% url 'asset:url_list_assets' %}">Voltar</a>
 
 <h1>{{ object }}
   <span class="pull-right">
-    <a href="{% url 'url_update_asset' object.sigla %}">
+    <a href="{% url 'asset:url_update_asset' object.sigla %}">
       <button type="button" class="btn btn-success">
         <span class="fa fa-pencil"></span> Editar
       </button>

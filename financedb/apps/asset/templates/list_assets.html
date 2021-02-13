@@ -15,7 +15,7 @@
 <div class="page-header">
   <h2>Lista de ativos cadastrados
     <span class="pull-right">
-      <a href="{% url 'url_new_asset'%}">
+      <a href="{% url 'asset:url_new_asset'%}">
         <button type="button" class="btn btn-primary">
           <span class="fa fa-plus"></span> Adicionar
         </button>
@@ -40,7 +40,9 @@
       <tbody>
         {% for object in objects %}
           <tr>
-            <td class="text-center"> <a href="{{ object.get_absolute_url}}">{{object.sigla}}</a></td>
+            <td class="text-center"> <a 
+            href="{% url 'asset:url_asset_detail' object.sigla %}"
+            >{{object.sigla}}</a></td>
             <td>{{object.name}}</td>
             <td>{{object.price}}</td>
             <td>{{object.classe}}</td>

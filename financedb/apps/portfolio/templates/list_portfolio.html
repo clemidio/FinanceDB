@@ -13,9 +13,9 @@
 </div>
 
 <div class="page-header">
-  <h2>Lista de Transações Cadastradas
+  <h2>Lista de Portifolio
     <span class="pull-right">
-      <a href="{% url 'url_new_transaction'%}">
+      <a href="{% url 'transaction:url_new_transaction'%}">
         <button type="button" class="btn btn-primary">
           <span class="fa fa-plus"></span> Adicionar
         </button>
@@ -28,35 +28,26 @@
     <table id="TransactionsTable" class="table table-striped">
       <thead>
         <tr>
-          <th class="text-center">Tipo</th>
-          <th class="text-center">Id</th>
           <th class="text-center">Ativo</th>
-          <th class="text-center">Data</th>
           <th class="text-center">Quantidade</th>
-          <th class="text-center">Preço</th>
-          <th class="text-center">Banco</th>
-          <th class="text-center">Nota</th>
+          <th class="text-center">Preço medio</th>
+          <th class="text-center">Custo de aquisição</th>
+          <th class="text-center">Valor de mecado</th>
+          <th class="text-center">Lucro</th>
+          <th class="text-center">Percentual</th>
         </tr>
       </thead>
       <tbody>
         {% for object in objects %}
           <tr>
-            <td class="text-center">
-              {% if object.operation == "C" or object.operation == "BN" %}
-                <i class="fa fa-check-circle ok"></i>
-              {% else %}
-                <i class="fa fa-check-circle no"></i>
-              {% endif %}            
-            </td>
-            <td> <a href="{{ object.get_absolute_url}}">{{object.id}}</a></td>
-            <td class="text-center"> 
-              <a href="{{ object.get_absolute_url}}">{{object.asset}}</a>
-            </td>
-            <td>{{object.date}}</td>
-            <td>{{object.amount}}</td>
-            <td>R$ <span class="pull-right" > {{object.price}}</span></td>
-            <td class="text-center"> {{object.account_bank}}</td>
-            <td class="text-center"> {{object.nota_id}}</td>
+            <td> <a href="{% url 'asset:url_asset_detail' object.asset %}" 
+                    >{{object.asset}}</a></td> 
+            <td>{{object.position}}</td> 
+            <td>{{object.avg_price}}</td> 
+            <td>R$ {{object.cost_basic}}</td>
+            <td>R$ {{object.mkt_value}}</td>
+            <td class="text-center">R$  {{object.profit}}</td>
+            <td class="text-center"> {{object.percent}} </td>
           </tr> 
         {% endfor %}
       </tbody>

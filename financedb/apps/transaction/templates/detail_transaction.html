@@ -2,11 +2,11 @@
 
 {% block content %}
 
-<a href="{% url 'url_list_transactions' %}">Voltar</a>
+<a href="{% url 'transaction:url_list_transactions' %}">Voltar</a>
 
 <h1>{{ object }}
   <span class="pull-right">
-    <a href="{% url 'url_update_transaction' object.pk %}">
+    <a href="{% url 'transaction:url_update_transaction' object.pk %}">
       <button type="button" class="btn btn-success">
         <span class="fa fa-pencil"></span> Editar
       </button>
