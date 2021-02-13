@@ -1,0 +1,10 @@
+body {
+  background-color: #5c848e;
+}
+
+.ok {
+  color: green; 
+}
+.no {
+  color: red;
+}

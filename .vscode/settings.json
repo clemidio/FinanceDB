@@ -1,0 +1,16 @@
+{
+  "jupyter.jupyterServerType": "local",
+  "python.pythonPath": ".venv\\Scripts\\python.exe",
+
+  "window.zoomLevel": -1,
+  "editor.fontSize": 20,
+
+  "code-runner.executorMap": {
+    "python": ".venv\\Scripts\\python.exe",
+    
+  },
+  "cSpell.ignoreWords": [
+    "financedb"
+  ]
+
+}

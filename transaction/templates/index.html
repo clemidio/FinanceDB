@@ -1,0 +1,55 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+  <div class="container">
+    <h2>Exemplo do uso de <a href="https://datatables.net/" target="_blank">DataTables</a></h2>
+    <p>Exemplo do uso de DataTables com Django.</p>
+    <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p> -->
+  </div>
+</div>
+
+<div class="container">
+  <!-- Example row of columns -->
+  {% comment %} <h2>Lista</h2> {% endcomment %}
+  <div class="row">
+    <table id="myTable1" class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>tipo</th>
+          <th>Ativo</th>
+          <th>Data</th>
+          <th>Quantidade</th>
+          <th>Preço</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for object in objects %}
+          <tr>
+            <td>{{ object.id }}</td>
+            <td>{{ object.operation }}</td>
+            <td>{{ object.asset }}</td>
+            <td>{{ object.date }}</td>
+            <td>{{ object.amount }}</td>
+            <td>{{ object.price }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+
+</div> <!-- /container -->
+
+{% endblock content %}
+
+{% block js %}
+
+<script src="{% static 'js/data.js' %}"></script>
+
+{% endblock js %}

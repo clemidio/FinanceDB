@@ -1,56 +1,23 @@
-from django.http.response import JsonResponse
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
+from django.core.files.storage import FileSystemStorage
 import datetime
-from .form import AssetForm
-from .models import Asset
-from .models import Transaction
+
 
 def current_datetime(request):
     now = datetime.datetime.now()
     html = "<html><body>It is now %s.</body></html>" % now
     return HttpResponse(html)
 
-def show_assets(request): 
-    # data['transactions'] = Transaction.objects.all()
-    assets = Asset.objects.all()
-    return render(request, 'core/assets.html',{'assets':assets})
 
-def new_asset(request):
-    form = AssetForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect('url_list_assets')
-    else:
-        print("Deu errado")
-    return render(request, 'core/new_asset.html',{'form':form })
+def upload_file(request):
+    if request.method == 'POST':
+        uploaded_file = request.FILES['document']
+        fs = FileSystemStorage()
+        name = fs.save(uploaded_file.name, uploaded_file)
+        url = fs.url(name)
+    return render(request, 'core/upload_file.html')  # ,{'url':url}
 
-def update_asset(request,pk):
-    try:
-        asset = Asset.objects.get(pk=pk)
-    except Asset.DoesNotExist:
-        raise Http404('asset does not exist')
-    
-    form = AssetForm(request.POST or None, instance=asset)
-    if form.is_valid():
-        form.save()
-        return redirect('url_list_assets')
-    else:
-        print("Deu errado")
-    return render(request, 'core/new_asset.html',{'form': form, 'asset': asset})
-
-def delete_asset(request,pk):
-    try:
-        asset = Asset.objects.get(pk=pk)
-    except Asset.DoesNotExist:
-        raise Http404('asset does not exist')
-    asset.delete()
-    return redirect('url_list_assets')
 
 def home(request):
-    return render(request, 'core/home.html',{'now': datetime.datetime.now()})
-
-def assets_json(request):
-    assets = Asset.objects.all()
-    data = [asset.to_dict_json() for asset in assets]
-    return JsonResponse({'data':data})
+    return render(request, 'core/home.html', {'now': datetime.datetime.now()})

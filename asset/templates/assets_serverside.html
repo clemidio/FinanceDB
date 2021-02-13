@@ -1,0 +1,48 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="page-header">
+  <h2>Lista de ativos cadastrados
+    <span class="pull-right">
+      <a href="{% url 'url_new_asset'%}">
+        <button type="button" class="btn btn-primary">
+          <span class="fa fa-plus"></span> Adicionar
+        </button>
+      </a>
+    </span>
+  </h2>
+
+  <div class="container">
+    <div class="row">
+      <div class="cols">
+        <h2>DataTables Server-side render </h2>
+        <table id="AssetsTable1" class="table">
+          <thead>
+            <tr>
+              <th class="text-center">Ativo</th>
+              <th>Nome</th>
+              <th>Preço</th>
+              <th>Classe</th>
+              <th>Setor</th>
+              <th>Subsotor</th>
+              <th>Segmento</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+
+    <hr>
+
+  </div> <!-- /container -->
+</div>
+
+{% endblock content %}
+
+{% block js %}
+
+<script src="{% static 'js/data.js' %}"></script>
+
+{% endblock js %}

@@ -1,0 +1,77 @@
+{% extends "core/base.html"%}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-sm-6">
+    <form action="." method="GET" class="form-inline">
+      <input type="text" id="search" name="search" class="form-control" placeholder="Busca">
+      <input type="submit" class="btn btn-primary" style="margin-left: 10px;" value="OK">
+    </form>
+  </div>
+</div>
+
+<div class="page-header">
+  <h2>Lista de Transações Cadastradas
+    <span class="pull-right">
+      <a href="{% url 'url_new_transaction'%}">
+        <button type="button" class="btn btn-primary">
+          <span class="fa fa-plus"></span> Adicionar
+        </button>
+      </a>
+    </span>
+  </h2>
+
+  {% if objects %}
+    {% comment %} <h1>Lista de ativos cadastrados</h1> {% endcomment %}
+    <table id="TransactionsTable" class="table table-striped">
+      <thead>
+        <tr>
+          <th class="text-center">Tipo</th>
+          <th class="text-center">Id</th>
+          <th class="text-center">Ativo</th>
+          <th class="text-center">Data</th>
+          <th class="text-center">Quantidade</th>
+          <th class="text-center">Preço</th>
+          <th class="text-center">Banco</th>
+          <th class="text-center">Nota</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for object in objects %}
+          <tr>
+            <td class="text-center">
+              {% if object.operation == "C" or object.operation == "BN" %}
+                <i class="fa fa-check-circle ok"></i>
+              {% else %}
+                <i class="fa fa-check-circle no"></i>
+              {% endif %}            
+            </td>
+            <td> <a href="{{ object.get_absolute_url}}">{{object.id}}</a></td>
+            <td class="text-center"> 
+              <a href="{{ object.get_absolute_url}}">{{object.asset}}</a>
+            </td>
+            <td>{{object.date}}</td>
+            <td>{{object.amount}}</td>
+            <td>R$ <span class="pull-right" > {{object.price}}</span></td>
+            <td class="text-center"> {{object.account_bank}}</td>
+            <td class="text-center"> {{object.nota_id}}</td>
+          </tr> 
+        {% endfor %}
+      </tbody>
+    </table>
+
+  {% else %}
+    <p class="alert alert-warning">Sem itens na lista.</p>
+  {% endif %}
+
+</div>
+
+{% endblock content %}
+
+{% block js %}
+
+<script src="{% static 'js/data.js' %}"></script>
+
+{% endblock js %}

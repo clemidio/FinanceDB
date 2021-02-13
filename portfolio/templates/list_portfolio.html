@@ -1,0 +1,67 @@
+{% extends "core/base.html"%}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-sm-6">
+    <form action="." method="GET" class="form-inline">
+      <input type="text" id="search" name="search" class="form-control" placeholder="Busca">
+      <input type="submit" class="btn btn-primary" style="margin-left: 10px;" value="OK">
+    </form>
+  </div>
+</div>
+
+<div class="page-header">
+  <h2>Lista de Portifolio
+    <span class="pull-right">
+      <a href="{% url 'url_new_transaction'%}">
+        <button type="button" class="btn btn-primary">
+          <span class="fa fa-plus"></span> Adicionar
+        </button>
+      </a>
+    </span>
+  </h2>
+
+  {% if objects %}
+    {% comment %} <h1>Lista de ativos cadastrados</h1> {% endcomment %}
+    <table id="TransactionsTable" class="table table-striped">
+      <thead>
+        <tr>
+          <th class="text-center">Ativo</th>
+          <th class="text-center">Quantidade</th>
+          <th class="text-center">Preço medio</th>
+          <th class="text-center">Custo de aquisição</th>
+          <th class="text-center">Valor de mecado</th>
+          <th class="text-center">Lucro</th>
+          <th class="text-center">Percentual</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for object in objects %}
+          <tr>
+            <td> <a href="{% url 'url_asset_detail' object.asset %}" >{{object.asset}}</a></td> 
+            <td>{{object.position}}</td> 
+            <td>{{object.avg_price}}</td> 
+            <td>R$ {{object.cost_basic}}</td>
+            <td>R$ {{object.mkt_value}}</td>
+            <td class="text-center">R$  {{object.profit}}</td>
+            <td class="text-center"> {{object.percent}} </td>
+          </tr> 
+        {% endfor %}
+      </tbody>
+    </table>
+
+  {% else %}
+    <p class="alert alert-warning">Sem itens na lista.</p>
+  {% endif %}
+
+</div>
+
+{% endblock content %}
+
+{% block js %}
+
+<script src="{% static 'js/data.js' %}"></script>
+
+{% endblock js %}

@@ -1,0 +1,64 @@
+{% extends "core/base.html"%}
+
+{% block content %}
+
+<a href="{% url 'url_list_assets' %}">Voltar</a>
+
+<h1>{{ object }}
+  <span class="pull-right">
+    <a href="{% url 'url_update_asset' object.sigla %}">
+      <button type="button" class="btn btn-success">
+        <span class="fa fa-pencil"></span> Editar
+      </button>
+    </a>
+  </span>
+</h1>
+
+<div class="col-sm-6">
+  <table class="table table-user-information">
+    <tbody>
+      <tr>
+        <th class="text-right">Ativo</th>
+        <td>{{ object.sigla }}</td>
+      </tr>
+      <tr>
+        <th class="text-right">Codigo</th>
+        <td>{{ object.symbol }}</td>
+      </tr>
+      <tr>
+        <th class="text-right">Nome</th>
+        <td>{{ object.name }}</td>
+      </tr>
+      <tr>
+        <th class="text-right">Preço</th>
+        <td>R$ {{ object.price }}</td>
+      </tr>
+      <tr>
+        <th class="text-right">Classe</th>
+        <td>{{ object.classe }}</td>
+      </tr>
+      <tr>
+        <th class="text-right">Setor</th>
+        <td>{{ object.setor }}</td>
+      </tr>
+      <tr>
+        <th class="text-right">Subsotor</th>
+        <td>{{ object.subsetor }}</td>
+      </tr>
+      <tr>
+        <th class="text-right">Segmento</th>
+        <td>{{ object.segmento }}</td>
+      </tr>
+      <tr>
+        <th class="text-right">Razão Social</th>
+        <td>{{ object.razao_social }}</td>
+      </tr>
+      <tr>
+        <th class="text-right">CNPJ</th>
+        <td>{{ object.cnpj }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock content %}

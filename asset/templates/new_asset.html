@@ -7,7 +7,7 @@
     {{form.as_p}}
     <button class="btn btn-primary" type="submit">Salvar</button>
     {% if asset %}
-      <a href="{% url 'url_delete_asset' asset.id %}">Remover</a>
+      <a href="{% url 'url_delete_asset' asset.sigla %}">Remover</a>
     {% endif %}
   </form>
 {% endblock content %}

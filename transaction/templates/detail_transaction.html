@@ -1,0 +1,70 @@
+{% extends "core/base.html"%}
+
+{% block content %}
+
+<a href="{% url 'url_list_transactions' %}">Voltar</a>
+
+<h1>{{ object }}
+  <span class="pull-right">
+    <a href="{% url 'url_update_transaction' object.pk %}">
+      <button type="button" class="btn btn-success">
+        <span class="fa fa-pencil"></span> Editar
+      </button>
+    </a>
+  </span>
+</h1>
+
+<div class="col-sm-6">
+  <table class="table table-user-information">
+    <tbody>
+      <tr>
+        <th class="text-right">Fluxo</th>
+        <td>
+          {% if object.amount >= "0" %}
+            <i class="fa fa-check-circle ok"></i>
+          {% else %}
+            <i class="fa fa-minus-circle no"></i>
+          {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <th class="text-right">Id</th>
+        <td>{{ object.id }}</td>
+      </tr>
+      <tr>
+        <th class="text-right">Ativo</th>
+        <td>{{ object.asset }}</td>
+      </tr>
+      <tr>
+        <th class="text-right">Operação</th>
+        <td>{{ object.operation }}</td>
+      </tr>
+      <tr>
+        <th class="text-right">Data</th>
+        <td>{{ object.date }}</td>
+      </tr>
+      <tr>
+        <th class="text-right">Quantidade</th>
+        <td>{{ object.amount }}</td>
+      </tr>
+      <tr>
+        <th class="text-right">Preço</th>
+        <td>R$ {{ object.price }}</td>
+      </tr>
+      <tr>
+        <th class="text-right">Comissão</th>
+        <td>R$ {{ object.commission }}</td>
+      </tr>
+      <tr>
+        <th class="text-right">Obs</th>
+        <td>R$ {{ object.obs }}</td>
+      </tr>
+      <tr>
+        <th class="text-right">Nota</th>
+        <td>{{ object.nota_id }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock content %}

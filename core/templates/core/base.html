@@ -1,41 +1,71 @@
-<!-- https://getbootstrap.com/docs/4.0/getting-started/introduction/#starter-template -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="https://www.djangoproject.com/favicon.ico">
-  <!-- <link rel="shortcut icon" href="http://html5-training-in-hyderabad.blogspot.com.br/favicon.ico"> -->
-  <title>FinanceDB</title>
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="https://getbootstrap.com/favicon.ico">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
   <!-- Font-awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
+  <title>FinanceDB</title>
+
   <style>
-    body {
-      margin-top: 60px;
+    .ok {
+      color: green; 
+    }
+    .no {
+      color: red;
+    }
+    span.required:after { 
+      content: "*"; 
+      color: red;
     }
   </style>
-
-  {% block css %}{% endblock css %}
-
-  </body>
 </head>
 <body>
+    {% include "core/nav.html" %}
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-20 col-md-12">
+          <div class="card mb-4">
+            <div class="card-body">
+              <main role="main">
 
-  {% include "core/nav.html" %}
+              {% block content %}{% endblock content %}
 
-  <div class="container">
+              </main> 
+              {% comment %} {% block content %}{% endblock %} {% endcomment %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% comment %} <main role="main">
+
     {% block content %}{% endblock content %}
-  </div>
+
+    </main> {% endcomment %}
+
+    <footer class="container">
+      <p>&copy; Company 2021</p>
+    </footer>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
 
   {% block js %}{% endblock js %}
-
 </body>
 </html>
